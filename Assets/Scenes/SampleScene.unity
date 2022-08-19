@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,6 +135,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirdsFormation
       objectReference: {fileID: 0}
+    - target: {fileID: 2254780168242593727, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2557171256975255797, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.13
+      objectReference: {fileID: 0}
     - target: {fileID: 3703518764525555980, guid: ef54f83922b9c5e40a5674c062085b94,
         type: 3}
       propertyPath: m_RootOrder
@@ -205,6 +215,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4443841665283336284, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864211703940512605, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 6305013676233467336, guid: ef54f83922b9c5e40a5674c062085b94,
         type: 3}
       propertyPath: Joystick
@@ -213,12 +233,42 @@ PrefabInstance:
     - target: {fileID: 6305013676233467336, guid: ef54f83922b9c5e40a5674c062085b94,
         type: 3}
       propertyPath: TurnSpeed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6305013676233467336, guid: ef54f83922b9c5e40a5674c062085b94,
         type: 3}
       propertyPath: ForcePower
-      value: 2
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016610603188956350, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407424866163730275, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407424866163730275, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407424866163730275, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407424866163730275, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202918842278571031, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef54f83922b9c5e40a5674c062085b94, type: 3}

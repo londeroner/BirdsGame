@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebc83a909366bb4189b29d2f9f600a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CubeFormation: {fileID: 0}
   Joystick: {fileID: 0}
   ForcePower: 10
   TurnSpeed: 2
