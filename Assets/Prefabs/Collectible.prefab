@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5535067007045186335}
   m_Layer: 0
-  m_Name: Food
+  m_Name: Collectible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5457920847389560029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1966156254424620485}
@@ -43,6 +43,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,
         type: 3}
@@ -96,6 +111,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e062083606858e94aab240ac7aa1d923, type: 2}
@@ -104,10 +124,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: e062083606858e94aab240ac7aa1d923, type: 2}
+    - target: {fileID: -5754084199372789682, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 919132149155446097, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,
         type: 3}
       propertyPath: m_Name
-      value: Apple
+      value: Resource
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6d5ac8cd5d757444a9d541f45c6ae0b, type: 3}
@@ -128,8 +153,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.017046163, z: 0.019896528}
-  m_Center: {x: -4.656613e-10, y: -0.00039469078, z: 0.00005173683}
+  m_Size: {x: 0.02, y: 3.59, z: 0.019896528}
+  m_Center: {x: -7.4505807e-10, y: -0.00029890536, z: 0.000051736835}
 --- !u!114 &3534066651008239404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +167,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa37cacb35abb849b5ac04bbcff44b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Weight: 2
+  Type: 0
+  foodMesh: {fileID: -472147775963580301, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,
+    type: 3}
+  coinMesh: {fileID: -5216581434543980006, guid: d4db07078f1004942b1ff7c92433dc43,
+    type: 3}
+  capMesh: {fileID: 3365645382605875686, guid: fb9094cbbbe0ebe47a81953d3155a5e3, type: 3}
+  foodMaterial: {fileID: 2100000, guid: e062083606858e94aab240ac7aa1d923, type: 2}
+  coinMaterial: {fileID: 2100000, guid: 236eacd5afdf43c48874673523f62563, type: 2}
+  capMaterial: {fileID: 2100000, guid: 3339739f7e4eafe40b9cf7a0fdc46ca8, type: 2}
 --- !u!4 &1966156254424620485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d6d5ac8cd5d757444a9d541f45c6ae0b,

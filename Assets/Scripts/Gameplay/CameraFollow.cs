@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -21,5 +22,10 @@ public class CameraFollow : MonoBehaviour
         Vector3 rot = transform.eulerAngles;
         rot.y = Mathf.Clamp(rot.y, -0.1f, 0.1f);
         transform.eulerAngles = rot;
+
+        //transform.eulerAngles = new Vector3(
+        //    transform.eulerAngles.x,
+        //    transform.eulerAngles.y,
+        //    -target.eulerAngles.y);
     }
 }
