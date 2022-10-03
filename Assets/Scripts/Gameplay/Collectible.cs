@@ -54,7 +54,7 @@ public class Collectible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Bird")
+        if (other.tag == Consts.BirdTag)
         {
             if (PlayerManager.instance.CollectResource(this))
                 Destroy(gameObject);
