@@ -54,9 +54,12 @@ public class Collectible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        var birdFormation = other.transform.parent?.parent?.parent?.name;
         if (other.tag == Consts.BirdTag)
         {
-            if (PlayerManager.instance.CollectResource(this))
+            if (!string.IsNullOrEmpty(birdFormation) && birdFormation != Consts.PlayerFormation)
+                Destroy(gameObject);
+            else if (PlayerManager.instance.CollectResource(this))
                 Destroy(gameObject);
         }
     }
