@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
     public float ForcePower = 10f;
     public float TurnSpeed = 45f;
 
+    private float _flyTime = 0f;
+
     private bool _stay = true;
 
     private void Start()
@@ -19,9 +21,11 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(_stay);
         if (Joystick.Horizontal != 0 || Joystick.Vertical != 0)
         {
-            if (_stay)
+            if (ForcePower * _flyTime < 6) _flyTime += Time.deltaTime;
+            if (_stay && CubeRigidbody.velocity == Vector3.zero)
             {
                 ChangeDir(100000f);
                 _stay = false;
@@ -30,12 +34,12 @@ public class Movement : MonoBehaviour
             {
                 ChangeDir(TurnSpeed);
             }
-            CubeRigidbody.velocity = transform.forward * ForcePower;
+            CubeRigidbody.velocity = transform.forward * (ForcePower * _flyTime);
         }
         else 
         {
-            CubeRigidbody.velocity = Vector3.zero;
             _stay = true;
+            _flyTime = 0;
         }
     }
 
