@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8407424866163730275}
   - component: {fileID: 3033395958619603772}
   - component: {fileID: 2475334189797729623}
+  - component: {fileID: 3415063069761799539}
   m_Layer: 0
   m_Name: BirdsFormation
   m_TagString: Formation
@@ -97,6 +98,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   healthBar: {fileID: 5153028315187974107}
+--- !u!114 &3415063069761799539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956264650492804708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ba719d49cdc7a4aa2c9860a8fde2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preventRot:
+  - {fileID: 2962836778476552347}
+  - {fileID: 145285023882775307}
 --- !u!1 &3845259282542025624
 GameObject:
   m_ObjectHideFlags: 0
