@@ -5,10 +5,13 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public FixedJoystick Joystick;
-    private Rigidbody CubeRigidbody;
 
     public float ForcePower = 10f;
     public float TurnSpeed = 45f;
+
+    private Rigidbody CubeRigidbody;
+    private BirdsFormation birdsFormation;
+    private FormationType lastFormation = FormationType.CollectFormation;
 
     private float _flyTime = 0f;
 
@@ -17,29 +20,37 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         CubeRigidbody = gameObject.GetComponent<Rigidbody>();
+        birdsFormation = gameObject.GetComponent<BirdsFormation>();
     }
 
     private void Update()
     {
-        Debug.Log(_stay);
         if (Joystick.Horizontal != 0 || Joystick.Vertical != 0)
         {
-            if (ForcePower * _flyTime < 6) _flyTime += Time.deltaTime;
-            if (_stay && CubeRigidbody.velocity == Vector3.zero)
-            {
-                ChangeDir(100000f);
-                _stay = false;
-            }
-            else
-            {
-                ChangeDir(TurnSpeed);
-            }
-            CubeRigidbody.velocity = transform.forward * (ForcePower * _flyTime);
+            _flyTime += Time.deltaTime;
+
+            ChangeDir(birdsFormation.FormationStats.GetTurnSpeed());
+
+            // Если начали движения после остановки
+            if (_stay && CubeRigidbody.velocity.magnitude < 0.3f)
+                birdsFormation.ChangeFormationType(lastFormation);
+            _stay = false;
+
+            CubeRigidbody.velocity = transform.forward * 
+                Mathf.Min((ForcePower * _flyTime)
+                          , birdsFormation.FormationStats.GetMaxSpeed(birdsFormation.isAbilityActive));
         }
+        //Если джойстик не двигается
         else 
         {
-            _stay = true;
-            _flyTime = 0;
+            //Если скорость упала ниже нужного значения со статичным джойстиком
+            //то считаем что остановились
+            if (CubeRigidbody.velocity.magnitude < 0.3f)
+            {
+                birdsFormation.ChangeFormationType(FormationType.NeutralFormation);
+                _stay = true;
+                _flyTime = 0;
+            }
         }
     }
 

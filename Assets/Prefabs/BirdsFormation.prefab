@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3703518764525555980}
   - component: {fileID: 6305013676233467336}
   - component: {fileID: 8407424866163730275}
-  - component: {fileID: 3033395958619603772}
   - component: {fileID: 2475334189797729623}
   - component: {fileID: 3415063069761799539}
+  - component: {fileID: 8089344253079444578}
   m_Layer: 0
   m_Name: BirdsFormation
   m_TagString: Formation
@@ -71,19 +71,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 20
   m_CollisionDetection: 0
---- !u!65 &3033395958619603772
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956264650492804708}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.9689647, y: 0.16327064, z: 0.53611577}
-  m_Center: {x: 0.0011662841, y: 0.040199153, z: -0.21508557}
 --- !u!114 &2475334189797729623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +100,20 @@ MonoBehaviour:
   preventRot:
   - {fileID: 2962836778476552347}
   - {fileID: 145285023882775307}
+--- !u!136 &8089344253079444578
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956264650492804708}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2452144
+  m_Height: 1
+  m_Direction: 0
+  m_Center: {x: 0, y: 0.05621612, z: -0.18000007}
 --- !u!1 &3845259282542025624
 GameObject:
   m_ObjectHideFlags: 0

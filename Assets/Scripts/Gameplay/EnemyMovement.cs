@@ -10,13 +10,14 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody FormationRigidbody;
 
-    private Transform target;
+    public Transform target;
     private int wavepointIndex = 0;
 
     void Start()
     {
         FormationRigidbody = gameObject.GetComponent<Rigidbody>();
-        target = Waypoints.WayPoints[wavepointIndex];
+        if (target == null)
+            target = Waypoints.WayPoints[wavepointIndex];
     }
 
     void Update()
@@ -29,8 +30,8 @@ public class EnemyMovement : MonoBehaviour
 
         FormationRigidbody.velocity = transform.forward * ForcePower;
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
-            GetNextWaypoint();
+        //if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+           // GetNextWaypoint();
     }
 
     void GetNextWaypoint()
