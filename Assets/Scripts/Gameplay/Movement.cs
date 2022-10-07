@@ -50,6 +50,19 @@ public class Movement : MonoBehaviour
                 _flyTime = 0;
             }
         }
+
+        #region For development
+
+        if (Input.GetKey(KeyCode.Q))
+            ChangeFormationFromControl(1);
+        if (Input.GetKey(KeyCode.W))
+            ChangeFormationFromControl(2);
+        if (Input.GetKey(KeyCode.E))
+            ChangeFormationFromControl(3);
+        if (Input.GetKey(KeyCode.Space))
+            birdsFormation.ActivateAbility();
+
+        #endregion
     }
 
     private void ChangeDir(float turnSpeed)
@@ -61,8 +74,7 @@ public class Movement : MonoBehaviour
     }
     public void ChangeFormationFromControl(int type)
     {
-        if (birdsFormation.FormationStats.FormationType == FormationType.NeutralFormation)
-            lastFormation = (FormationType)type;
-        else birdsFormation.ChangeFormationType((FormationType)type);
+        lastFormation = (FormationType)type;
+        birdsFormation.ChangeFormationType((FormationType)type);
     }
 }

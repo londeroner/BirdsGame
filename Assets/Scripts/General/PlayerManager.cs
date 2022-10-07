@@ -8,16 +8,10 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
-    [NonSerialized]
-    public float CollectedWeight = 0;
-    [NonSerialized]
-    public int CollectedFood = 0;
-    [NonSerialized]
-    public int CollectedCoins = 0;
-    [NonSerialized]
-    public int CollectedCaps = 0;
-
     public TextMeshProUGUI foodText;
+
+    public GameObject playerFormation;
+    private BirdsFormation birds;
 
     public PlayerManager()
     {
@@ -26,31 +20,16 @@ public class PlayerManager : MonoBehaviour
         else throw new System.Exception("Player manager allready created");
     }
 
-    public bool CollectResource(Collectible collectible)
+    private void Start()
     {
-        if (CollectedWeight + collectible.Weight > GameBalance.instance.MaxWeight)
-            return false;
+        birds = playerFormation.GetComponent<BirdsFormation>();
+    }
 
-        switch (collectible.Type)
-        {
-            case CollectibleResource.Food:
-                CollectedFood++;
-                break;
-            case CollectibleResource.Coin:
-                CollectedCoins++;
-                break;
-            case CollectibleResource.Cap:
-                CollectedCaps++;
-                break;
-            default: throw new System.Exception("No resource type");
-        }
-        CollectedWeight += collectible.Weight;
-
-        foodText.text = $"Собрано еды: {CollectedFood}" +
-            $"\nСобрано монет: {CollectedCoins}" +
-            $"\nСобрано крышек: {CollectedCaps}" +
-            $"\nСобранный вес: {string.Format("{0:.##}", CollectedWeight)}/{string.Format("{0:#.##}", GameBalance.instance.MaxWeight)}";
-
-        return true;
+    public void ChangeResourceText()
+    {
+        foodText.text = $"Собрано еды: {birds.CollectedFood}" +
+            $"\nСобрано монет: {birds.CollectedCoins}" +
+            $"\nСобрано крышек: {birds.CollectedCaps}" +
+            $"\nСобранный вес: {string.Format("{0:.##}", birds.CollectedWeight)}/{string.Format("{0:#.##}", GameBalance.instance.MaxWeight)}";
     }
 }

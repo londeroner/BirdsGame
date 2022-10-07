@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TreeDisappear : MonoBehaviour
 {
-    public GameObject objectToDisappear;
+    public List<GameObject> objectsToDisappear;
 
     private void OnTriggerEnter(Collider other)
     {
         var birdFormation = other.transform.parent?.parent?.parent?.name;
         if (other.tag == Consts.BirdTag && !string.IsNullOrEmpty(birdFormation) && birdFormation == Consts.PlayerFormation)
         {
-            objectToDisappear.SetActive(false);
+            objectsToDisappear.ForEach(x => x.SetActive(false));
         }
     }
 
@@ -20,7 +20,7 @@ public class TreeDisappear : MonoBehaviour
         var birdFormation = other.transform.parent?.parent?.parent?.name;
         if (other.tag == Consts.BirdTag && !string.IsNullOrEmpty(birdFormation) && birdFormation == Consts.PlayerFormation)
         {
-            objectToDisappear.SetActive(true);
+            objectsToDisappear.ForEach(x => x.SetActive(true));
         }
     }
 }
