@@ -8,19 +8,31 @@ public class TreeDisappear : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var birdFormation = other.transform.parent?.parent?.parent?.name;
-        if (other.tag == Consts.BirdTag && !string.IsNullOrEmpty(birdFormation) && birdFormation == Consts.PlayerFormation)
+        var birdFormation = other.transform.parent?.parent?.parent;
+
+        if (birdFormation is not null)
         {
-            objectsToDisappear.ForEach(x => x.SetActive(false));
+            birdFormation.GetComponent<BirdsFormation>().Tree = gameObject;
+
+            if (other.tag == Consts.BirdTag && !string.IsNullOrEmpty(birdFormation.name) && birdFormation.name == Consts.PlayerFormation)
+            {
+                objectsToDisappear.ForEach(x => x.SetActive(false));
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        var birdFormation = other.transform.parent?.parent?.parent?.name;
-        if (other.tag == Consts.BirdTag && !string.IsNullOrEmpty(birdFormation) && birdFormation == Consts.PlayerFormation)
+        var birdFormation = other.transform.parent?.parent?.parent;
+
+        if (birdFormation is not null)
         {
-            objectsToDisappear.ForEach(x => x.SetActive(true));
+            birdFormation.GetComponent<BirdsFormation>().Tree = null;
+
+            if (other.tag == Consts.BirdTag && !string.IsNullOrEmpty(birdFormation.name) && birdFormation.name == Consts.PlayerFormation)
+            {
+                objectsToDisappear.ForEach(x => x.SetActive(true));
+            }
         }
     }
 }

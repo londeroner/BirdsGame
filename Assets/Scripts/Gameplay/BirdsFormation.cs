@@ -43,6 +43,8 @@ public class BirdsFormation : MonoBehaviour
     public TextMeshProUGUI ActiveButtonText;
     private BirdEffectManager _effectManager;
 
+    [NonSerialized]
+    public GameObject Tree;
     void Start()
     {
         maxHealth = Health;
