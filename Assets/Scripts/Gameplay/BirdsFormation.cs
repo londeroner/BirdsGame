@@ -45,7 +45,7 @@ public class BirdsFormation : MonoBehaviour
 
     [NonSerialized]
     public GameObject Tree;
-    void Start()
+    void Awake()
     {
         maxHealth = Health;
         chargeActive = ChargeActive();
@@ -64,12 +64,12 @@ public class BirdsFormation : MonoBehaviour
         abilityActive = AbilityActive();
         isAbilityActive = false;
         canActivateAbility = false;
+        _effectManager.DisableAll();
 
         FormationStats.FormationType = type;
 
         StartCoroutine(chargeActive);
 
-        _effectManager.ChangeEffect(type);
         Debug.Log($"Current formation type: {type}");
     }
 
@@ -80,7 +80,7 @@ public class BirdsFormation : MonoBehaviour
             var otherForm = other.gameObject.GetComponent<BirdsFormation>();
             
             TakeDamage(otherForm.FormationStats.GetDamageAmount() - FormationStats.GetDamageReduce(isAbilityActive), otherForm);
-            otherForm.TakeDamage(FormationStats.GetDamageAmount() - otherForm.FormationStats.GetDamageReduce(isAbilityActive), this);
+            otherForm.TakeDamage(FormationStats.GetDamageAmount() - otherForm.FormationStats.GetDamageReduce(otherForm.isAbilityActive), this);
         }
     }
 
@@ -132,10 +132,13 @@ public class BirdsFormation : MonoBehaviour
 
     public IEnumerator AbilityActive()
     {
+        _effectManager.ChangeEffect(FormationStats.FormationType);
         isAbilityActive = true;
         FormationStats.ResetCooldown();
+        canActivateAbility = false;
         yield return new WaitForSeconds(FormationStats.GetActiveDuration());
         isAbilityActive = false;
+        _effectManager.DisableAll();
         StartCoroutine(chargeActive);
     }
 

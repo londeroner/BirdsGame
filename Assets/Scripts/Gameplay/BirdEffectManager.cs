@@ -33,7 +33,7 @@ public class BirdEffectManager : MonoBehaviour
         }
     }
 
-    private void DisableAll()
+    public void DisableAll()
     {
         foreach (var sphere in DefenceSpheres)
             sphere.SetActive(false);

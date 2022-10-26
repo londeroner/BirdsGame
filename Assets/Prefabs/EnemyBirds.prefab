@@ -189,8 +189,8 @@ GameObject:
   - component: {fileID: 2749758202709592293}
   - component: {fileID: 2738858054248407124}
   - component: {fileID: 7619781565093433991}
-  - component: {fileID: 4157268489453535524}
   - component: {fileID: 975111444707868830}
+  - component: {fileID: 4157268489453535524}
   - component: {fileID: 5222533369034613985}
   m_Layer: 0
   m_Name: EnemyBirds
@@ -208,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 8193956083258035568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2828, y: 1.2828, z: 1.2828}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4372758929392481207}
@@ -232,7 +232,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 20
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &7619781565093433991
 BoxCollider:
@@ -247,20 +247,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.68794477, y: 0.26795197, z: 0.5750556}
   m_Center: {x: 0.008810833, y: 0.060911953, z: -0.2124722}
---- !u!114 &4157268489453535524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8193956083258035568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79e711bb716584646815c397d490a778, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 10
-  healthBar: {fileID: 9166892784671852738}
 --- !u!114 &975111444707868830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +261,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForcePower: 5
   TurnSpeed: 45
+  player: {fileID: 0}
+  Pattern: 0
+--- !u!114 &4157268489453535524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193956083258035568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e711bb716584646815c397d490a778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 10
+  IsPlayer: 0
+  healthBar: {fileID: 9166892784671852738}
+  ActiveButtonText: {fileID: 0}
 --- !u!114 &5222533369034613985
 MonoBehaviour:
   m_ObjectHideFlags: 0

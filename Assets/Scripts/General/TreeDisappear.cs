@@ -5,6 +5,7 @@ using UnityEngine;
 public class TreeDisappear : MonoBehaviour
 {
     public List<GameObject> objectsToDisappear;
+    public float Alpha = 0.99f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +17,12 @@ public class TreeDisappear : MonoBehaviour
 
             if (other.tag == Consts.BirdTag && !string.IsNullOrEmpty(birdFormation.name) && birdFormation.name == Consts.PlayerFormation)
             {
-                objectsToDisappear.ForEach(x => x.SetActive(false));
+                objectsToDisappear.ForEach(x =>
+                {
+                    var renderer = x.GetComponent<Renderer>();
+                    Color oldColor = renderer.material.color;
+                    renderer.material.SetColor("_BaseColor", new Color(oldColor.r, oldColor.g, oldColor.b, Alpha));
+                });
             }
         }
     }
@@ -31,7 +37,12 @@ public class TreeDisappear : MonoBehaviour
 
             if (other.tag == Consts.BirdTag && !string.IsNullOrEmpty(birdFormation.name) && birdFormation.name == Consts.PlayerFormation)
             {
-                objectsToDisappear.ForEach(x => x.SetActive(true));
+                objectsToDisappear.ForEach(x =>
+                {
+                    var renderer = x.GetComponent<Renderer>();
+                    Color oldColor = renderer.material.color;
+                    renderer.material.SetColor("_BaseColor", new Color(oldColor.r, oldColor.g, oldColor.b, 1.0f));
+                });
             }
         }
     }

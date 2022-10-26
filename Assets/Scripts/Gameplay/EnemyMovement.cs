@@ -28,14 +28,14 @@ public class EnemyMovement : MonoBehaviour
     {
         FormationRigidbody = gameObject.GetComponent<Rigidbody>();
         playerFormation = player.GetComponent<BirdsFormation>();
-        selfFormation = GetComponent<BirdsFormation>();
+        selfFormation = gameObject.GetComponent<BirdsFormation>();
         target = player.transform;
         selfFormation.FormationStats.FormationType = FormationType.AttackFormation;
     }
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+        if (Vector3.Distance(transform.position, target.position) <= 1f)
             GetNextTarget(true);
         else GetNextTarget(false);
 
@@ -72,16 +72,6 @@ public class EnemyMovement : MonoBehaviour
             case AIActionPattern.Collection:
                 break;
         }
-    }
-
-    private void GetNextWaypoint()
-    {
-        Debug.Log($"Next waypoint: {wavepointIndex}");
-
-        if (wavepointIndex >= Waypoints.WayPoints.Length)
-            wavepointIndex = 0;
-
-        target = Waypoints.WayPoints[wavepointIndex++];
     }
 
     private void MoveToTarget()
