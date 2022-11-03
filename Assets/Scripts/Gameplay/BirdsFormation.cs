@@ -110,9 +110,11 @@ public class BirdsFormation : MonoBehaviour
         {
             yield return null;
             FormationStats.AddCooldown(Time.deltaTime);
-            ActiveButtonText.text = string.Format("{0:#.##}", FormationStats.GetActiveCooldown() - FormationStats.GetCooldown());
+            if (IsPlayer)
+                ActiveButtonText.text = string.Format("{0:#.##}", FormationStats.GetActiveCooldown() - FormationStats.GetCooldown());
         }
-        ActiveButtonText.text = "Active to use";
+        if (IsPlayer)
+            ActiveButtonText.text = "Active to use";
 
         canActivateAbility = true;
     }

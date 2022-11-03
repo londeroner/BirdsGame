@@ -33,7 +33,7 @@ public class EnemyMovement : MonoBehaviour
         playerFormation = player.GetComponent<BirdsFormation>();
         selfFormation = gameObject.GetComponent<BirdsFormation>();
         target = player.transform;
-        selfFormation.FormationStats.FormationType = FormationType.AttackFormation;
+        selfFormation.ChangeFormationType(FormationType.AttackFormation);
         afterHit = AfterHit();
     }
 
@@ -53,14 +53,20 @@ public class EnemyMovement : MonoBehaviour
             case AIActionPattern.Aggressive:
                 if (target == player.transform)
                 {
+                    Debug.Log(Vector3.Distance(player.transform.position, transform.position));
+                    if (selfFormation.canActivateAbility)
+                    {
+                        selfFormation.ActivateAbility();
+                    }
+
                     waypointNotReached = 0f;
                     if (_playerHide)
-                        target = GetClothestWaypoint();
+                        target = GetRandomWaypoint();
                    else if (reach)
                    {
                         HitPlayer = true;
                         StartCoroutine(afterHit);
-                        target = GetClothestWaypoint();
+                        target = GetRandomWaypoint();
                    }
                 }
                 else if (Waypoints.WayPoints.Contains(target))
@@ -95,7 +101,7 @@ public class EnemyMovement : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * selfFormation.FormationStats.GetTurnSpeed()).eulerAngles;
         transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-        FormationRigidbody.velocity = transform.forward * selfFormation.FormationStats.GetMaxSpeed(false);
+        FormationRigidbody.velocity = transform.forward * selfFormation.FormationStats.GetMaxSpeed(selfFormation.isAbilityActive);
     }
 
     private Transform GetClothestWaypoint()
