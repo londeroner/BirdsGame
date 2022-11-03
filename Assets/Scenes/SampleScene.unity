@@ -2391,6 +2391,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreeGreen
       objectReference: {fileID: 0}
+    - target: {fileID: 3036491697265241250, guid: b8346ac1c24739e40a4eabc3e0153757,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab266deb1b7bc484db4a8c008a586001, type: 2}
     - target: {fileID: 5422313469199450549, guid: b8346ac1c24739e40a4eabc3e0153757,
         type: 3}
       propertyPath: m_IsActive
