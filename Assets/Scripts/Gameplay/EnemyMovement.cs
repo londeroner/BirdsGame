@@ -17,7 +17,6 @@ public class EnemyMovement : MonoBehaviour
 
     [NonSerialized]
     public Transform target;
-    private int wavepointIndex = 0;
 
     public AIActionPattern Pattern = AIActionPattern.Aggressive;
     private bool HitPlayer = false;

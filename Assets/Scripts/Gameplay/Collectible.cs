@@ -20,6 +20,8 @@ public class Collectible : MonoBehaviour
 
     public float BaseScale = 30.0f;
 
+    private Rigidbody rigidbody;
+
     public Collectible()
     {
     }
@@ -50,6 +52,9 @@ public class Collectible : MonoBehaviour
                 Weight = GameBalance.instance.capWeight;
                 break;
         }
+
+        rigidbody = gameObject.GetComponent<Rigidbody>();
+        //rigidbody.useGravity = true;
     }
 
     private void OnTriggerEnter(Collider other)
