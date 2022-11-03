@@ -21,6 +21,10 @@ public class EnemyMovement : MonoBehaviour
     public AIActionPattern Pattern = AIActionPattern.Aggressive;
     private bool HitPlayer = false;
 
+    private IEnumerator afterHit;
+
+    private float waypointNotReached = 0f;
+
     private bool _playerHide => playerFormation.Tree is not null && !(playerFormation.Tree == selfFormation.Tree);
 
     void Start()
@@ -30,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
         selfFormation = gameObject.GetComponent<BirdsFormation>();
         target = player.transform;
         selfFormation.FormationStats.FormationType = FormationType.AttackFormation;
+        afterHit = AfterHit();
     }
 
     void Update()
@@ -48,20 +53,29 @@ public class EnemyMovement : MonoBehaviour
             case AIActionPattern.Aggressive:
                 if (target == player.transform)
                 {
+                    waypointNotReached = 0f;
                     if (_playerHide)
                         target = GetClothestWaypoint();
                    else if (reach)
                    {
                         HitPlayer = true;
+                        StartCoroutine(afterHit);
                         target = GetClothestWaypoint();
                    }
                 }
                 else if (Waypoints.WayPoints.Contains(target))
                 {
-                    if (HitPlayer && reach)
+                    waypointNotReached += Time.deltaTime;
+                    if (reach)
                     {
-                        HitPlayer = false;
-                        target = player.transform;
+                        if (!_playerHide)
+                            target = player.transform;
+                        else target = GetRandomWaypoint();
+                    }
+                    else if (waypointNotReached > 10f)
+                    {
+                        waypointNotReached = 0f;
+                        target = GetRandomWaypoint();
                     }
                     else if (!_playerHide && !HitPlayer)
                         target = player.transform;
@@ -83,8 +97,21 @@ public class EnemyMovement : MonoBehaviour
 
         FormationRigidbody.velocity = transform.forward * selfFormation.FormationStats.GetMaxSpeed(false);
     }
+
     private Transform GetClothestWaypoint()
     {
         return Waypoints.WayPoints.OrderBy(x => Vector3.Distance(transform.position, x.position)).FirstOrDefault();
+    }
+
+    private Transform GetRandomWaypoint()
+    {
+        return Waypoints.WayPoints[new System.Random().Next(0, Waypoints.WayPoints.Length)];
+    }
+
+    private IEnumerator AfterHit()
+    {
+        yield return new WaitForSeconds(2);
+        HitPlayer = false;
+        afterHit = AfterHit();
     }
 }

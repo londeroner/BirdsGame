@@ -2395,7 +2395,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ab266deb1b7bc484db4a8c008a586001, type: 2}
+      objectReference: {fileID: 2100000, guid: f1eff55ba035cc444a805bdb514b4a39, type: 2}
     - target: {fileID: 5422313469199450549, guid: b8346ac1c24739e40a4eabc3e0153757,
         type: 3}
       propertyPath: m_IsActive
@@ -2456,11 +2456,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7166312314230393324, guid: b8346ac1c24739e40a4eabc3e0153757,
+        type: 3}
+      propertyPath: objectsToDisappear.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166312314230393324, guid: b8346ac1c24739e40a4eabc3e0153757,
+        type: 3}
+      propertyPath: objectsToDisappear.Array.data[1]
+      value: 
+      objectReference: {fileID: 912269901}
     - target: {fileID: 7831317167709852408, guid: b8346ac1c24739e40a4eabc3e0153757,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ab266deb1b7bc484db4a8c008a586001, type: 2}
+    - target: {fileID: 8357698426737794038, guid: b8346ac1c24739e40a4eabc3e0153757,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1eff55ba035cc444a805bdb514b4a39, type: 2}
     - target: {fileID: 8865073670487699827, guid: b8346ac1c24739e40a4eabc3e0153757,
         type: 3}
       propertyPath: m_IsActive
@@ -9952,6 +9967,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 906196292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &912269901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2965471994853057885, guid: b8346ac1c24739e40a4eabc3e0153757,
+    type: 3}
+  m_PrefabInstance: {fileID: 263743419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &919283630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14918,6 +14939,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6889578129805332558, guid: b59eb32f729d65745ab9255211f6db27,
+        type: 3}
+      propertyPath: objectsToDisappear.Array.data[0]
+      value: 
+      objectReference: {fileID: 2024181548}
     - target: {fileID: 7707868049971125849, guid: b59eb32f729d65745ab9255211f6db27,
         type: 3}
       propertyPath: m_Name
@@ -23963,6 +23989,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee23eaba4cdf2d4fa045f70f2aec026, type: 3}
+--- !u!1 &2024181548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1044200907932167088, guid: b59eb32f729d65745ab9255211f6db27,
+    type: 3}
+  m_PrefabInstance: {fileID: 1322706684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2024342302
 PrefabInstance:
   m_ObjectHideFlags: 0
