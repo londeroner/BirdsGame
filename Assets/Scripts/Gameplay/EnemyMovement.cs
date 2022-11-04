@@ -53,8 +53,7 @@ public class EnemyMovement : MonoBehaviour
             case AIActionPattern.Aggressive:
                 if (target == player.transform)
                 {
-                    Debug.Log(Vector3.Distance(player.transform.position, transform.position));
-                    if (selfFormation.canActivateAbility)
+                    if (selfFormation.canActivateAbility && Vector3.Distance(player.transform.position, transform.position) < 8f)
                     {
                         selfFormation.ActivateAbility();
                     }
