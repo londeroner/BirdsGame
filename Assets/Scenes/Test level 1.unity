@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodText: {fileID: 1380028553}
-  playerFormation: {fileID: 0}
+  playerFormation: {fileID: 1054539895}
 --- !u!4 &136845219
 Transform:
   m_ObjectHideFlags: 0
@@ -852,7 +852,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 392570937}
   m_PlaneDistance: 2
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -941,14 +941,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392570935}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 36.6, z: 99.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &392570939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,8 +962,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1762370893}
-  smoothSpeed: 0.125
-  offset: {x: 0, y: 0, z: -1}
+  smoothSpeed: 0.1
+  offset: {x: 0, y: 9, z: -1}
 --- !u!114 &392570940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2150,6 +2150,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b59eb32f729d65745ab9255211f6db27, type: 3}
+--- !u!1 &1054539895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1956264650492804708, guid: ef54f83922b9c5e40a5674c062085b94,
+    type: 3}
+  m_PrefabInstance: {fileID: 1504162175}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1130986061
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,7 +2320,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220203944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1.8662001, y: 1.8662001, z: 1.8662001}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2324,7 +2330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -294.70825, y: 166.75302}
+  m_AnchoredPosition: {x: -156, y: 118}
   m_SizeDelta: {x: 160, y: 100.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1220203946
@@ -2882,7 +2888,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Joystick
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2127658640}
     - target: {fileID: 6305013676233467336, guid: ef54f83922b9c5e40a5674c062085b94,
         type: 3}
       propertyPath: TurnSpeed
@@ -3728,3 +3734,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 814418236}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2127658640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
+    type: 3}
+  m_PrefabInstance: {fileID: 814418236}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
