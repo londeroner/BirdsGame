@@ -1,51 +1,79 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class FormationStats
 {
+    [NonSerialized]
     public float AttackRecharged = 0f;
+    [NonSerialized]
     public float DefenceRecharged = 0f;
+    [NonSerialized]
     public float CollectRecharged = 0f;
+
+    public int BaseDamage = 1;
+    public int AttackFormationDamage = 2;
+
+    [Header("Formations speed")]
+    public float AttackSpeed = 6f;
+    public float AttackActiveSpeed = 8f;
+    public float OtherSpeed = 4.5f;
+
+    [Header("Formations turn speed")]
+    public float AttackTurn = 1.5f;
+    public float DefenceTurn = 4.5f;
+    public float CollectTurn = 3f;
+
+    [Header("Active cooldowns")]
+    public float AttackCooldown = 10f;
+    public float DefenceCooldown = 15f;
+    public float CollectCooldown = 15f;
+
+    [Header("Active durations")]
+    public float AttackDuration = 5f;
+    public float DefenceDuration = 5f;
+    public float CollectDuration = 3f;
 
     public FormationType FormationType { get; set; }
 
     public int GetDamageAmount() => FormationType switch
     {
-        FormationType.AttackFormation => 2,
-        _ => 1
+        FormationType.AttackFormation => AttackFormationDamage,
+        _ => BaseDamage
     };
 
     public float GetMaxSpeed(bool isActive) => FormationType switch
     {
-        FormationType.AttackFormation => isActive ? 8 : 6,
-        FormationType.DefenceFormation => 4.5f,
-        FormationType.CollectFormation => 4.5f,
+        FormationType.AttackFormation => isActive ? AttackActiveSpeed : AttackSpeed,
+        FormationType.DefenceFormation => OtherSpeed,
+        FormationType.CollectFormation => OtherSpeed,
         _ => 3
     };
 
     public float GetTurnSpeed() => FormationType switch
     {
         FormationType.NeutralFormation => 100000f,
-        FormationType.AttackFormation => 1.5f,
-        FormationType.DefenceFormation => 4.5f,
-        FormationType.CollectFormation => 3f,
+        FormationType.AttackFormation => AttackTurn,
+        FormationType.DefenceFormation => DefenceTurn,
+        FormationType.CollectFormation => CollectTurn,
         _ => 0f
     };
 
     public float GetActiveCooldown() => FormationType switch
     {
-        FormationType.AttackFormation => 10f,
-        FormationType.DefenceFormation => 15f,
-        FormationType.CollectFormation => 15f,
+        FormationType.AttackFormation => AttackCooldown,
+        FormationType.DefenceFormation => DefenceCooldown,
+        FormationType.CollectFormation => CollectCooldown,
         _ => 0,
     };
 
     public float GetActiveDuration() => FormationType switch
     {
-        FormationType.AttackFormation => 5f,
-        FormationType.DefenceFormation => 5f,
-        FormationType.CollectFormation => 3f,
+        FormationType.AttackFormation => AttackDuration,
+        FormationType.DefenceFormation => DefenceDuration,
+        FormationType.CollectFormation => CollectDuration,
         _ => 0f
     };
 

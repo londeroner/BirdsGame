@@ -17,8 +17,7 @@ public class BirdsFormation : MonoBehaviour
 
     [Header("Unity Stuff")]
     public Image healthBar;
-
-    [NonSerialized]
+    
     public FormationStats FormationStats;
 
     [NonSerialized]
