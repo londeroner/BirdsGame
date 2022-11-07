@@ -18,7 +18,7 @@ public class BirdsFormation : MonoBehaviour
     [Header("Unity Stuff")]
     public Image healthBar;
     
-    public FormationStats FormationStats;
+    public FormationStats FormationStats = new FormationStats();
 
     [NonSerialized]
     public bool isAbilityActive = false;
@@ -49,7 +49,6 @@ public class BirdsFormation : MonoBehaviour
         maxHealth = Health;
         chargeActive = ChargeActive();
         abilityActive = AbilityActive();
-        FormationStats = new FormationStats();
         _effectManager = GetComponent<BirdEffectManager>();
     }
 
