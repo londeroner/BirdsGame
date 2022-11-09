@@ -158,6 +158,7 @@ public class BirdsFormation : MonoBehaviour
                     if (_collectedFormationFood >= 2)
                     {
                         Health++;
+                        healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
                         _collectedFormationFood = 0;
                     }
                 }
