@@ -34,6 +34,7 @@ public class Collectible : MonoBehaviour
         CollectibleResource.Food => GameBalance.instance.foodWeight,
         CollectibleResource.Coin => GameBalance.instance.coinWeight,
         CollectibleResource.Cap => GameBalance.instance.capWeight,
+        CollectibleResource.Feather => GameBalance.instance.featherWeight,
         _ => 1
     };
 }

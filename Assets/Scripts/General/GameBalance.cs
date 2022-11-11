@@ -18,4 +18,5 @@ public class GameBalance : MonoBehaviour
     public float foodWeight = 0.25f;
     public float coinWeight = 1f;
     public float capWeight = 2f;
+    public float featherWeight = 1f;
 }
