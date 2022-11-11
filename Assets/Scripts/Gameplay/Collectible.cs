@@ -10,51 +10,14 @@ public class Collectible : MonoBehaviour
 
     public CollectibleResource Type;
 
-    public Mesh foodMesh;
-    public Mesh coinMesh;
-    public Mesh capMesh;
-
-    public Material foodMaterial;
-    public Material coinMaterial;
-    public Material capMaterial;
-
-    public float BaseScale = 30.0f;
-
-    private Rigidbody rigidbody;
-
-    public Collectible()
+    public void Awake()
     {
+        Weight = GetWeightByType();
     }
 
     public Collectible(CollectibleResource Type)
     {
         this.Type = Type;
-    }
-
-    public void Awake()
-    {
-        transform.localScale = new Vector3(BaseScale, BaseScale, BaseScale);
-        switch (Type)
-        {
-            case CollectibleResource.Food:
-                GetComponent<MeshFilter>().mesh = foodMesh;
-                GetComponent<Renderer>().material = foodMaterial;
-                Weight = GameBalance.instance.foodWeight;
-                break;
-            case CollectibleResource.Coin:
-                GetComponent<MeshFilter>().mesh = coinMesh;
-                GetComponent<Renderer>().material = coinMaterial;
-                Weight = GameBalance.instance.coinWeight;
-                break;
-            case CollectibleResource.Cap:
-                GetComponent<MeshFilter>().mesh = capMesh;
-                GetComponent<Renderer>().material = capMaterial;
-                Weight = GameBalance.instance.capWeight;
-                break;
-        }
-
-        rigidbody = gameObject.GetComponent<Rigidbody>();
-        //rigidbody.useGravity = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,4 +28,12 @@ public class Collectible : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private float GetWeightByType() => Type switch
+    {
+        CollectibleResource.Food => GameBalance.instance.foodWeight,
+        CollectibleResource.Coin => GameBalance.instance.coinWeight,
+        CollectibleResource.Cap => GameBalance.instance.capWeight,
+        _ => 1
+    };
 }

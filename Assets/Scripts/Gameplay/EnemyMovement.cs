@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody FormationRigidbody;
 
-    public GameObject player;
+    private GameObject player;
     private BirdsFormation playerFormation;
     private BirdsFormation selfFormation;
 
@@ -29,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
+        player = PlayerManager.instance.playerFormation;
         FormationRigidbody = gameObject.GetComponent<Rigidbody>();
         playerFormation = player.GetComponent<BirdsFormation>();
         selfFormation = gameObject.GetComponent<BirdsFormation>();

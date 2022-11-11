@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3703518764525555980}
-  - component: {fileID: 6305013676233467336}
   - component: {fileID: 8407424866163730275}
   - component: {fileID: 2475334189797729623}
   - component: {fileID: 3415063069761799539}
   - component: {fileID: 8089344253079444578}
   - component: {fileID: 2805935738752679341}
+  - component: {fileID: 6037828717358356702}
   m_Layer: 0
   m_Name: BirdsFormation
   m_TagString: Formation
@@ -46,21 +46,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6305013676233467336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956264650492804708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ebc83a909366bb4189b29d2f9f600a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Joystick: {fileID: 0}
-  ForcePower: 10
-  TurnSpeed: 3
 --- !u!54 &8407424866163730275
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -90,8 +75,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
-  IsPlayer: 0
+  IsPlayer: 1
   healthBar: {fileID: 5153028315187974107}
+  FormationStats:
+    BaseDamage: 1
+    AttackFormationDamage: 2
+    AttackSpeed: 6
+    AttackActiveSpeed: 8
+    OtherSpeed: 4.5
+    AttackTurn: 1.5
+    DefenceTurn: 4.5
+    CollectTurn: 3
+    AttackCooldown: 10
+    DefenceCooldown: 15
+    CollectCooldown: 15
+    AttackDuration: 5
+    DefenceDuration: 5
+    CollectDuration: 3
   ActiveButtonText: {fileID: 0}
 --- !u!114 &3415063069761799539
 MonoBehaviour:
@@ -140,6 +140,21 @@ MonoBehaviour:
   - {fileID: 3613850595460110254}
   CollectSphere: {fileID: 4876030653698967182}
   AttackEffect: {fileID: 8605192493959035261}
+--- !u!114 &6037828717358356702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956264650492804708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebc83a909366bb4189b29d2f9f600a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Joystick: {fileID: 0}
+  ForcePower: 10
+  TurnSpeed: 45
 --- !u!1 &3845259282542025624
 GameObject:
   m_ObjectHideFlags: 0
