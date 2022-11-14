@@ -149,7 +149,9 @@ public class BirdsFormation : MonoBehaviour
 
         switch (collectible.Type)
         {
-            case CollectibleResource.Food:
+            case CollectibleResource.Apple:
+            case CollectibleResource.Blueberry:
+            case CollectibleResource.Cranberry:
                 CollectedFood += 1 * FormationStats.GetResourceMultiplier(isAbilityActive);
 
                 if (FormationStats.FormationType == FormationType.CollectFormation)
@@ -157,8 +159,11 @@ public class BirdsFormation : MonoBehaviour
                     _collectedFormationFood++;
                     if (_collectedFormationFood >= 2)
                     {
-                        Health++;
-                        healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
+                        if (Health < maxHealth)
+                        {
+                            Health++;
+                            healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
+                        }
                         _collectedFormationFood = 0;
                     }
                 }

@@ -31,10 +31,12 @@ public class Collectible : MonoBehaviour
 
     private float GetWeightByType() => Type switch
     {
-        CollectibleResource.Food => GameBalance.instance.foodWeight,
         CollectibleResource.Coin => GameBalance.instance.coinWeight,
         CollectibleResource.Cap => GameBalance.instance.capWeight,
         CollectibleResource.Feather => GameBalance.instance.featherWeight,
+        CollectibleResource.Apple => GameBalance.instance.appleWeight,
+        CollectibleResource.Blueberry => GameBalance.instance.blueberryWeight,
+        CollectibleResource.Cranberry => GameBalance.instance.cranberryWeight,
         _ => 1
     };
 }

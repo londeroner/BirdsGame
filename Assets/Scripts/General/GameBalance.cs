@@ -15,7 +15,9 @@ public class GameBalance : MonoBehaviour
 
     [Header("Общий вес")]
     public float MaxWeight = 30;
-    public float foodWeight = 0.25f;
+    public float appleWeight = 0.25f;
+    public float cranberryWeight = 0.25f;
+    public float blueberryWeight = 0.25f;
     public float coinWeight = 1f;
     public float capWeight = 2f;
     public float featherWeight = 1f;
