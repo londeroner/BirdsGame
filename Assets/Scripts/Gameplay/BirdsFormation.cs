@@ -36,6 +36,8 @@ public class BirdsFormation : MonoBehaviour
     public int CollectedCoins = 0;
     [NonSerialized]
     public int CollectedCaps = 0;
+    [NonSerialized]
+    public int CollectedFeathers = 0;
 
     private int _collectedFormationFood = 0;
 
@@ -153,6 +155,7 @@ public class BirdsFormation : MonoBehaviour
             case CollectibleResource.Blueberry:
             case CollectibleResource.Cranberry:
                 CollectedFood += 1 * FormationStats.GetResourceMultiplier(isAbilityActive);
+                CollectedWeight += collectible.Weight * FormationStats.GetResourceMultiplier(isAbilityActive);
 
                 if (FormationStats.FormationType == FormationType.CollectFormation)
                 {
@@ -170,13 +173,18 @@ public class BirdsFormation : MonoBehaviour
                 break;
             case CollectibleResource.Coin:
                 CollectedCoins++;
+                CollectedWeight += collectible.Weight;
                 break;
             case CollectibleResource.Cap:
                 CollectedCaps++;
+                CollectedWeight += collectible.Weight;
+                break;
+            case CollectibleResource.Feather:
+                CollectedFeathers++;
+                CollectedWeight += collectible.Weight;
                 break;
             default: throw new System.Exception("No resource type");
         }
-        CollectedWeight += collectible.Weight * FormationStats.GetResourceMultiplier(isAbilityActive);
 
         if (IsPlayer) PlayerManager.instance.ChangeResourceText();
 
