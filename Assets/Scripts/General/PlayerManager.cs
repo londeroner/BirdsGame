@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject playerFormation;
     private BirdsFormation birds;
 
+    public GameObject featherPrefab;
+
     public PlayerManager()
     {
         if (instance == null)

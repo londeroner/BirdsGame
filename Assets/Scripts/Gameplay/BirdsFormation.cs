@@ -95,13 +95,14 @@ public class BirdsFormation : MonoBehaviour
         Health -= amount;
         _fight = true;
 
+        healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
         if (Health <= 0)
         {
             if (source.FormationStats.FormationType == FormationType.AttackFormation)
                 source.Health++;
+            GameObject go = Instantiate(PlayerManager.instance.featherPrefab, gameObject.transform.position, new Quaternion());
             Destroy(gameObject);
         }
-        healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
     }
 
     private IEnumerator ChargeActive()

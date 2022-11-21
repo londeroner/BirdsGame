@@ -10,23 +10,31 @@ public class Collectible : MonoBehaviour
 
     public CollectibleResource Type;
 
+    private bool CanCollect = true;
+
     public void Awake()
     {
         Weight = GetWeightByType();
-    }
-
-    public Collectible(CollectibleResource Type)
-    {
-        this.Type = Type;
+        if (Type == CollectibleResource.Feather)
+        {
+            CanCollect = false;
+            StartCoroutine(CanCollectDelay());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == Consts.BirdTag)
+        if (other.tag == Consts.BirdTag && CanCollect)
         {
             other.transform.parent?.parent?.parent.GetComponent<BirdsFormation>().CollectResource(this);
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator CanCollectDelay()
+    {
+        yield return new WaitForSeconds(3);
+        CanCollect = true;
     }
 
     private float GetWeightByType() => Type switch
