@@ -36,6 +36,8 @@ public class BirdsFormation : MonoBehaviour
     public int CollectedCoins = 0;
     [NonSerialized]
     public int CollectedCaps = 0;
+    [NonSerialized]
+    public int CollectedFeathers = 0;
 
     private int _collectedFormationFood = 0;
 
@@ -93,13 +95,14 @@ public class BirdsFormation : MonoBehaviour
         Health -= amount;
         _fight = true;
 
+        healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
         if (Health <= 0)
         {
             if (source.FormationStats.FormationType == FormationType.AttackFormation)
                 source.Health++;
+            GameObject go = Instantiate(PlayerManager.instance.featherPrefab, gameObject.transform.position, new Quaternion());
             Destroy(gameObject);
         }
-        healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
     }
 
     private IEnumerator ChargeActive()
@@ -149,29 +152,40 @@ public class BirdsFormation : MonoBehaviour
 
         switch (collectible.Type)
         {
-            case CollectibleResource.Food:
+            case CollectibleResource.Apple:
+            case CollectibleResource.Blueberry:
+            case CollectibleResource.Cranberry:
                 CollectedFood += 1 * FormationStats.GetResourceMultiplier(isAbilityActive);
+                CollectedWeight += collectible.Weight * FormationStats.GetResourceMultiplier(isAbilityActive);
 
                 if (FormationStats.FormationType == FormationType.CollectFormation)
                 {
                     _collectedFormationFood++;
                     if (_collectedFormationFood >= 2)
                     {
-                        Health++;
-                        healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
+                        if (Health < maxHealth)
+                        {
+                            Health++;
+                            healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
+                        }
                         _collectedFormationFood = 0;
                     }
                 }
                 break;
             case CollectibleResource.Coin:
                 CollectedCoins++;
+                CollectedWeight += collectible.Weight;
                 break;
             case CollectibleResource.Cap:
                 CollectedCaps++;
+                CollectedWeight += collectible.Weight;
+                break;
+            case CollectibleResource.Feather:
+                CollectedFeathers++;
+                CollectedWeight += collectible.Weight;
                 break;
             default: throw new System.Exception("No resource type");
         }
-        CollectedWeight += collectible.Weight * FormationStats.GetResourceMultiplier(isAbilityActive);
 
         if (IsPlayer) PlayerManager.instance.ChangeResourceText();
 

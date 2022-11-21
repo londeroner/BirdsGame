@@ -5,7 +5,10 @@ using UnityEngine;
 [SerializeField]
 public enum CollectibleResource
 {
-    Food = 0,
+    Apple = 0,
     Coin = 1,
     Cap = 2,
+    Feather = 3,
+    Blueberry = 4,
+    Cranberry = 5
 }

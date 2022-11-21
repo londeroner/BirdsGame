@@ -10,59 +10,42 @@ public class Collectible : MonoBehaviour
 
     public CollectibleResource Type;
 
-    public Mesh foodMesh;
-    public Mesh coinMesh;
-    public Mesh capMesh;
-
-    public Material foodMaterial;
-    public Material coinMaterial;
-    public Material capMaterial;
-
-    public float BaseScale = 30.0f;
-
-    private Rigidbody rigidbody;
-
-    public Collectible()
-    {
-    }
-
-    public Collectible(CollectibleResource Type)
-    {
-        this.Type = Type;
-    }
+    private bool CanCollect = true;
 
     public void Awake()
     {
-        transform.localScale = new Vector3(BaseScale, BaseScale, BaseScale);
-        switch (Type)
+        Weight = GetWeightByType();
+        if (Type == CollectibleResource.Feather)
         {
-            case CollectibleResource.Food:
-                GetComponent<MeshFilter>().mesh = foodMesh;
-                GetComponent<Renderer>().material = foodMaterial;
-                Weight = GameBalance.instance.foodWeight;
-                break;
-            case CollectibleResource.Coin:
-                GetComponent<MeshFilter>().mesh = coinMesh;
-                GetComponent<Renderer>().material = coinMaterial;
-                Weight = GameBalance.instance.coinWeight;
-                break;
-            case CollectibleResource.Cap:
-                GetComponent<MeshFilter>().mesh = capMesh;
-                GetComponent<Renderer>().material = capMaterial;
-                Weight = GameBalance.instance.capWeight;
-                break;
+            CanCollect = false;
+            StartCoroutine(CanCollectDelay());
         }
-
-        rigidbody = gameObject.GetComponent<Rigidbody>();
-        //rigidbody.useGravity = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == Consts.BirdTag)
+        if (other.tag == Consts.BirdTag && CanCollect)
         {
             other.transform.parent?.parent?.parent.GetComponent<BirdsFormation>().CollectResource(this);
             Destroy(gameObject);
         }
     }
+
+    private IEnumerator CanCollectDelay()
+    {
+        yield return new WaitForSeconds(1);
+        CanCollect = true;
+        GetComponentInChildren<Rigidbody>().useGravity = true;
+    }
+
+    private float GetWeightByType() => Type switch
+    {
+        CollectibleResource.Coin => GameBalance.instance.coinWeight,
+        CollectibleResource.Cap => GameBalance.instance.capWeight,
+        CollectibleResource.Feather => GameBalance.instance.featherWeight,
+        CollectibleResource.Apple => GameBalance.instance.appleWeight,
+        CollectibleResource.Blueberry => GameBalance.instance.blueberryWeight,
+        CollectibleResource.Cranberry => GameBalance.instance.cranberryWeight,
+        _ => 1
+    };
 }
