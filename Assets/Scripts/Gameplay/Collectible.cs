@@ -35,6 +35,7 @@ public class Collectible : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         CanCollect = true;
+        GetComponentInChildren<Rigidbody>().useGravity = true;
     }
 
     private float GetWeightByType() => Type switch
