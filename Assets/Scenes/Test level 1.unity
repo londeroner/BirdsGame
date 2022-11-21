@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -448,9 +448,9 @@ MonoBehaviour:
   appleWeight: 0.25
   cranberryWeight: 0.25
   blueberryWeight: 0.25
-  coinWeight: 1
-  capWeight: 2
-  featherWeight: 1
+  coinWeight: 10
+  capWeight: 3
+  featherWeight: 5
 --- !u!114 &136845218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +505,7 @@ MonoBehaviour:
     type: 3}
   capPrefab: {fileID: 5457920847389560029, guid: 8ebf28a4afe278c49b1eafe6570c6b61,
     type: 3}
-  appleCount: 5
+  appleCount: 50
   cranberryCount: 5
   blueberryCount: 5
   coinCount: 5
@@ -1648,7 +1648,7 @@ PrefabInstance:
     - target: {fileID: 2475334189797729623, guid: 15e3053e36f66b44c8f549d47f8bf5a0,
         type: 3}
       propertyPath: Health
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3703518764525555980, guid: 15e3053e36f66b44c8f549d47f8bf5a0,
         type: 3}
@@ -2569,7 +2569,7 @@ PrefabInstance:
     - target: {fileID: 2475334189797729623, guid: 15e3053e36f66b44c8f549d47f8bf5a0,
         type: 3}
       propertyPath: Health
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3703518764525555980, guid: 15e3053e36f66b44c8f549d47f8bf5a0,
         type: 3}
