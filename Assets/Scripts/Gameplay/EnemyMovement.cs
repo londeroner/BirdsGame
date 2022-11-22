@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
 {
     public float ForcePower = 1f;
     public float TurnSpeed = 5f;
+    public float AggressiveRadius = 12f;
 
     private Rigidbody FormationRigidbody;
 
@@ -24,8 +25,10 @@ public class EnemyMovement : MonoBehaviour
     private IEnumerator afterHit;
 
     private float waypointNotReached = 0f;
-
-    private bool _playerHide => playerFormation.Tree is not null && !(playerFormation.Tree == selfFormation.Tree);
+    private float _distanceToPlayer => Vector3.Distance(player.transform.position, transform.position);
+    private bool _playerHide => (playerFormation.Tree is not null 
+                                && !(playerFormation.Tree == selfFormation.Tree)) 
+                                || _distanceToPlayer > AggressiveRadius;
 
     void Start()
     {
@@ -44,6 +47,9 @@ public class EnemyMovement : MonoBehaviour
             GetNextTarget(true);
         else GetNextTarget(false);
 
+        Debug.Log(_distanceToPlayer);
+        Debug.Log(_playerHide);
+
         MoveToTarget();
     }
 
@@ -54,7 +60,7 @@ public class EnemyMovement : MonoBehaviour
             case AIActionPattern.Aggressive:
                 if (target == player.transform)
                 {
-                    if (selfFormation.canActivateAbility && Vector3.Distance(player.transform.position, transform.position) < 8f)
+                    if (selfFormation.canActivateAbility && _distanceToPlayer < 8f)
                     {
                         selfFormation.ActivateAbility();
                     }
