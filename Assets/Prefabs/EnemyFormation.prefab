@@ -79,14 +79,14 @@ MonoBehaviour:
   healthBar: {fileID: 5153028315187974107}
   FormationStats:
     BaseDamage: 1
-    AttackFormationDamage: 2
-    AttackSpeed: 6
-    AttackActiveSpeed: 8
-    OtherSpeed: 4.5
-    AttackTurn: 1.5
-    DefenceTurn: 4.5
-    CollectTurn: 3
-    AttackCooldown: 10
+    AttackFormationDamage: 3
+    AttackSpeed: 4.5
+    AttackActiveSpeed: 6
+    OtherSpeed: 3.5
+    AttackTurn: 1
+    DefenceTurn: 3.5
+    CollectTurn: 2.5
+    AttackCooldown: 15
     DefenceCooldown: 15
     CollectCooldown: 15
     AttackDuration: 5
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForcePower: 1
   TurnSpeed: 5
+  AggressiveRadius: 12
   Pattern: 0
 --- !u!1 &3845259282542025624
 GameObject:
