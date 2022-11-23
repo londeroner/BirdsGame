@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     private BirdsFormation birds;
 
     public GameObject featherPrefab;
+    public GameObject deathEffectPrefab;
+    public GameObject clashEffectPrefab;
 
     public PlayerManager()
     {

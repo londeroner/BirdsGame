@@ -100,8 +100,13 @@ public class BirdsFormation : MonoBehaviour
         {
             if (source.FormationStats.FormationType == FormationType.AttackFormation)
                 source.Health++;
-            GameObject go = Instantiate(PlayerManager.instance.featherPrefab, gameObject.transform.position, new Quaternion());
+            Instantiate(PlayerManager.instance.deathEffectPrefab, gameObject.transform.position, new Quaternion());
+            Instantiate(PlayerManager.instance.featherPrefab, gameObject.transform.position, new Quaternion());
             Destroy(gameObject);
+        }
+        else
+        {
+            Instantiate(PlayerManager.instance.clashEffectPrefab, GetCoordCenterWithYAdd(gameObject.transform.position, source.transform.position, 1f), new Quaternion());
         }
     }
 
@@ -190,5 +195,14 @@ public class BirdsFormation : MonoBehaviour
         if (IsPlayer) PlayerManager.instance.ChangeResourceText();
 
         return true;
+    }
+
+    private Vector3 GetCoordCenterWithYAdd(Vector3 a, Vector3 b, float yadd)
+    {
+        float x = (a.x + b.x) / 2;
+        float y = (a.y + b.y) / 2;
+        float z = (a.z + b.z) / 2;
+
+        return new Vector3(x, y + yadd, z);
     }
 }

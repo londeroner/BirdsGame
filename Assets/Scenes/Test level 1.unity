@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -466,6 +466,10 @@ MonoBehaviour:
   foodText: {fileID: 1380028553}
   playerFormation: {fileID: 1054539895}
   featherPrefab: {fileID: 5457920847389560029, guid: 976e64bc1bc469f43a28066eb517c992,
+    type: 3}
+  deathEffectPrefab: {fileID: 1178666017518238210, guid: 436e5f7c8f194794ba9b0089bbba04d8,
+    type: 3}
+  clashEffectPrefab: {fileID: 1178666017518238210, guid: f1615101102a1694d851ad0d15cbab5a,
     type: 3}
 --- !u!4 &136845219
 Transform:
