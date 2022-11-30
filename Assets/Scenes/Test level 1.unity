@@ -4765,6 +4765,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2475334189797729623, guid: ef54f83922b9c5e40a5674c062085b94,
         type: 3}
+      propertyPath: AttackButton
+      value: 
+      objectReference: {fileID: 741325302}
+    - target: {fileID: 2475334189797729623, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: CollectButton
+      value: 
+      objectReference: {fileID: 1593592668}
+    - target: {fileID: 2475334189797729623, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
+      propertyPath: DefenceButton
+      value: 
+      objectReference: {fileID: 706263634}
+    - target: {fileID: 2475334189797729623, guid: ef54f83922b9c5e40a5674c062085b94,
+        type: 3}
       propertyPath: ActiveButtonText
       value: 
       objectReference: {fileID: 814432665}
