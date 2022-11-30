@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TreeDisappear : MonoBehaviour
 {
     public List<GameObject> objectsToDisappear;
     public float Alpha = 0.99f;
+
+    public bool isHomeTree = false;
+    public GameObject homeButton;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +28,11 @@ public class TreeDisappear : MonoBehaviour
                     renderer.material.SetColor("_BaseColor", new Color(oldColor.r, oldColor.g, oldColor.b, Alpha));
                 });
             }
+        }
+
+        if (isHomeTree)
+        {
+            homeButton.SetActive(true);
         }
     }
 
@@ -44,6 +53,11 @@ public class TreeDisappear : MonoBehaviour
                     renderer.material.SetColor("_BaseColor", new Color(oldColor.r, oldColor.g, oldColor.b, 1.0f));
                 });
             }
+        }
+
+        if (isHomeTree)
+        {
+            homeButton.SetActive(false);
         }
     }
 }

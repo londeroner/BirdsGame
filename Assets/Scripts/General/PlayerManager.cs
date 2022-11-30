@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -35,5 +36,10 @@ public class PlayerManager : MonoBehaviour
             $"\nСобрано монет: {birds.CollectedCoins}" +
             $"\nСобрано крышек: {birds.CollectedCaps}" +
             $"\nСобранный вес: {string.Format("{0:.##}", birds.CollectedWeight)}/{string.Format("{0:#.##}", GameBalance.instance.MaxWeight)}";
+    }
+
+    public void ReturnHome()
+    {
+        SceneManager.LoadScene(0);
     }
 }
