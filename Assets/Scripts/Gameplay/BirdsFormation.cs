@@ -44,6 +44,10 @@ public class BirdsFormation : MonoBehaviour
     public TextMeshProUGUI ActiveButtonText;
     private BirdEffectManager _effectManager;
 
+    public GameObject AttackButton;
+    public GameObject DefenceButton;
+    public GameObject CollectButton;
+
     [NonSerialized]
     public GameObject Tree;
     void Awake()
@@ -71,6 +75,7 @@ public class BirdsFormation : MonoBehaviour
         StartCoroutine(chargeActive);
 
         Debug.Log($"Current formation type: {type}");
+        if (IsPlayer) SetButtonsColor();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -204,5 +209,29 @@ public class BirdsFormation : MonoBehaviour
         float z = (a.z + b.z) / 2;
 
         return new Vector3(x, y + yadd, z);
+    }
+
+    private void SetButtonsColor()
+    {
+        var attackButtonColor = AttackButton.GetComponent<Image>();
+        var defenceButtonColor = DefenceButton.GetComponent<Image>();
+        var collectButtonColor = CollectButton.GetComponent<Image>();
+
+        attackButtonColor.color = Color.white;
+        defenceButtonColor.color = Color.white;
+        collectButtonColor.color = Color.white;
+
+        switch (FormationStats.FormationType)
+        {
+            case FormationType.AttackFormation:
+                attackButtonColor.color = Color.red;
+                break;
+            case FormationType.DefenceFormation:
+                defenceButtonColor.color = Color.red;
+                break;
+            case FormationType.CollectFormation:
+                collectButtonColor.color = Color.red;
+                break;
+        }
     }
 }
