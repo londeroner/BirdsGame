@@ -45,6 +45,7 @@ public class Movement : MonoBehaviour
             //то считаем что остановились
             if (CubeRigidbody.velocity.magnitude < 0.3f)
             {
+                if (birdsFormation.FormationStats.FormationType != FormationType.NeutralFormation) lastFormation = birdsFormation.FormationStats.FormationType;
                 birdsFormation.ChangeFormationType(FormationType.NeutralFormation);
                 _stay = true;
                 _flyTime = 0;

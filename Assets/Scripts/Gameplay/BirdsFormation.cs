@@ -58,6 +58,22 @@ public class BirdsFormation : MonoBehaviour
         _effectManager = GetComponent<BirdEffectManager>();
     }
 
+    public void ChangeFormationTypeFromButton(int type)
+    {
+        switch (type)
+        {
+            case 0:
+                ChangeFormationType(FormationType.AttackFormation);
+                break;
+            case 1:
+                ChangeFormationType(FormationType.DefenceFormation);
+                break;
+            case 2:
+                ChangeFormationType(FormationType.CollectFormation);
+                break;
+        }
+    }
+
     public void ChangeFormationType(FormationType type)
     {
         if (FormationStats.FormationType == type) return;

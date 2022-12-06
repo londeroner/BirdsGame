@@ -25,12 +25,12 @@ public class TreeDisappear : MonoBehaviour
                 {
                     var renderer = x.GetComponent<Renderer>();
                     Color oldColor = renderer.material.color;
-                    renderer.material.SetColor("_BaseColor", new Color(oldColor.r, oldColor.g, oldColor.b, Alpha));
+                    renderer.material.SetColor("_Color", new Color(oldColor.r, oldColor.g, oldColor.b, Alpha));
                 });
             }
         }
 
-        if (isHomeTree)
+        if (isHomeTree && birdFormation.GetComponent<BirdsFormation>().IsPlayer)
         {
             homeButton.SetActive(true);
         }
@@ -50,7 +50,7 @@ public class TreeDisappear : MonoBehaviour
                 {
                     var renderer = x.GetComponent<Renderer>();
                     Color oldColor = renderer.material.color;
-                    renderer.material.SetColor("_BaseColor", new Color(oldColor.r, oldColor.g, oldColor.b, 1.0f));
+                    renderer.material.SetColor("_Color", new Color(oldColor.r, oldColor.g, oldColor.b, 1.0f));
                 });
             }
         }
