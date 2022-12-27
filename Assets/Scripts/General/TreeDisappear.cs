@@ -9,7 +9,6 @@ public class TreeDisappear : MonoBehaviour
     public float Alpha = 0.99f;
 
     public bool isHomeTree = false;
-    public GameObject homeButton;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,11 +27,11 @@ public class TreeDisappear : MonoBehaviour
                     renderer.material.SetColor("_Color", new Color(oldColor.r, oldColor.g, oldColor.b, Alpha));
                 });
             }
-        }
 
-        if (isHomeTree && birdFormation.GetComponent<BirdsFormation>().IsPlayer)
-        {
-            homeButton.SetActive(true);
+            if (isHomeTree && birdFormation.GetComponent<BirdsFormation>().IsPlayer)
+            {
+                UIManager.instance.ChangeHomeButton(true);
+            }
         }
     }
 
@@ -53,11 +52,12 @@ public class TreeDisappear : MonoBehaviour
                     renderer.material.SetColor("_Color", new Color(oldColor.r, oldColor.g, oldColor.b, 1.0f));
                 });
             }
+
+            if (isHomeTree)
+            {
+                UIManager.instance.ChangeHomeButton(true);
+            }
         }
 
-        if (isHomeTree)
-        {
-            homeButton.SetActive(false);
-        }
     }
 }

@@ -39,17 +39,19 @@ public class EnemyMovement : MonoBehaviour
         target = player.transform;
         selfFormation.ChangeFormationType(FormationType.AttackFormation);
         afterHit = AfterHit();
+
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
-    void Update()
+    void UpdateTarget()
     {
         if (Vector3.Distance(transform.position, target.position) <= 1f)
             GetNextTarget(true);
         else GetNextTarget(false);
+    }
 
-        Debug.Log(_distanceToPlayer);
-        Debug.Log(_playerHide);
-
+    private void Update()
+    {
         MoveToTarget();
     }
 

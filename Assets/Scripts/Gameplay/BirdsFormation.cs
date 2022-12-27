@@ -29,24 +29,11 @@ public class BirdsFormation : MonoBehaviour
     private IEnumerator abilityActive;
 
     [NonSerialized]
-    public float CollectedWeight = 0;
+    private List<Collectible> collectedResources = new List<Collectible>();
     [NonSerialized]
-    public int CollectedFood = 0;
-    [NonSerialized]
-    public int CollectedCoins = 0;
-    [NonSerialized]
-    public int CollectedCaps = 0;
-    [NonSerialized]
-    public int CollectedFeathers = 0;
+    private byte maxResourceCount = 3;
 
-    private int _collectedFormationFood = 0;
-
-    public TextMeshProUGUI ActiveButtonText;
     private BirdEffectManager _effectManager;
-
-    public GameObject AttackButton;
-    public GameObject DefenceButton;
-    public GameObject CollectButton;
 
     [NonSerialized]
     public GameObject Tree;
@@ -90,8 +77,7 @@ public class BirdsFormation : MonoBehaviour
 
         StartCoroutine(chargeActive);
 
-        Debug.Log($"Current formation type: {type}");
-        if (IsPlayer) SetButtonsColor();
+        if (IsPlayer) UIManager.instance.PlayerChangeFormation(type);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -122,7 +108,8 @@ public class BirdsFormation : MonoBehaviour
             if (source.FormationStats.FormationType == FormationType.AttackFormation)
                 source.Health++;
             Instantiate(PlayerManager.instance.deathEffectPrefab, gameObject.transform.position, new Quaternion());
-            Instantiate(PlayerManager.instance.featherPrefab, gameObject.transform.position, new Quaternion());
+            GameObject f = Instantiate(PlayerManager.instance.featherPrefab, gameObject.transform.position, new Quaternion());
+            f.GetComponentInChildren<Collectible>().Drop();
             Destroy(gameObject);
         }
         else
@@ -138,10 +125,10 @@ public class BirdsFormation : MonoBehaviour
             yield return null;
             FormationStats.AddCooldown(Time.deltaTime);
             if (IsPlayer)
-                ActiveButtonText.text = string.Format("{0:#.##}", FormationStats.GetActiveCooldown() - FormationStats.GetCooldown());
+                UIManager.instance.ChangeActiveButton(FormationStats.GetActiveCooldown() - FormationStats.GetCooldown());
         }
         if (IsPlayer)
-            ActiveButtonText.text = "Active to use";
+            UIManager.instance.ChangeActiveButton(0);
 
         canActivateAbility = true;
     }
@@ -173,49 +160,73 @@ public class BirdsFormation : MonoBehaviour
 
     public bool CollectResource(Collectible collectible)
     {
-        if (CollectedWeight + collectible.Weight > GameBalance.instance.MaxWeight)
-            return false;
+        Debug.Log(collectedResources.Count);
+        if (collectedResources.Count == maxResourceCount) return false;
+        else collectedResources.Add(collectible);
 
         switch (collectible.Type)
         {
             case CollectibleResource.Apple:
             case CollectibleResource.Blueberry:
             case CollectibleResource.Cranberry:
-                CollectedFood += 1 * FormationStats.GetResourceMultiplier(isAbilityActive);
-                CollectedWeight += collectible.Weight * FormationStats.GetResourceMultiplier(isAbilityActive);
-
-                if (FormationStats.FormationType == FormationType.CollectFormation)
+                if (FormationStats.FormationType == FormationType.CollectFormation && isAbilityActive)
                 {
-                    _collectedFormationFood++;
-                    if (_collectedFormationFood >= 2)
+                    if (Health < maxHealth)
                     {
-                        if (Health < maxHealth)
-                        {
-                            Health++;
-                            healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
-                        }
-                        _collectedFormationFood = 0;
+                        Health += 2;
+                        if (Health > maxHealth) Health = maxHealth;
+                        healthBar.fillAmount = ((float)Health * 100 / (float)maxHealth) / 100;
                     }
                 }
                 break;
             case CollectibleResource.Coin:
-                CollectedCoins++;
-                CollectedWeight += collectible.Weight;
                 break;
             case CollectibleResource.Cap:
-                CollectedCaps++;
-                CollectedWeight += collectible.Weight;
                 break;
             case CollectibleResource.Feather:
-                CollectedFeathers++;
-                CollectedWeight += collectible.Weight;
                 break;
             default: throw new System.Exception("No resource type");
         }
 
-        if (IsPlayer) PlayerManager.instance.ChangeResourceText();
+        if (IsPlayer) UIManager.instance.RedrawInventory(collectedResources, maxResourceCount);
 
         return true;
+    }
+    public void DropFromInventoryResource(int index)
+    {
+        if (collectedResources.Count > index)
+        {
+            Collectible drop = collectedResources[index];
+            GameObject prefabToDrop = null;
+            switch (drop.Type)
+            {
+                case CollectibleResource.Apple:
+                    prefabToDrop = GenerationSystem.instance.applePrefab;
+                    break;
+                case CollectibleResource.Coin:
+                    prefabToDrop = GenerationSystem.instance.coinPrefab;
+                    break;
+                case CollectibleResource.Cap:
+                    prefabToDrop = GenerationSystem.instance.capPrefab;
+                    break;
+                case CollectibleResource.Feather:
+                    prefabToDrop = PlayerManager.instance.featherPrefab;
+                    break;
+                case CollectibleResource.Blueberry:
+                    prefabToDrop = GenerationSystem.instance.blueberryPrefab;
+                    break;
+                case CollectibleResource.Cranberry:
+                    prefabToDrop = GenerationSystem.instance.cranberryPrefab;
+                    break;
+            }
+
+            GameObject f = Instantiate(prefabToDrop, gameObject.transform.position, new Quaternion());
+            f.transform.Rotate(0f, new System.Random().Next(0, 360), 0f);
+            f.GetComponentInChildren<Collectible>().Drop();
+
+            collectedResources.Remove(drop);
+            UIManager.instance.RedrawInventory(collectedResources, maxResourceCount);
+        }
     }
 
     private Vector3 GetCoordCenterWithYAdd(Vector3 a, Vector3 b, float yadd)
@@ -225,29 +236,5 @@ public class BirdsFormation : MonoBehaviour
         float z = (a.z + b.z) / 2;
 
         return new Vector3(x, y + yadd, z);
-    }
-
-    private void SetButtonsColor()
-    {
-        var attackButtonColor = AttackButton.GetComponent<Image>();
-        var defenceButtonColor = DefenceButton.GetComponent<Image>();
-        var collectButtonColor = CollectButton.GetComponent<Image>();
-
-        attackButtonColor.color = Color.white;
-        defenceButtonColor.color = Color.white;
-        collectButtonColor.color = Color.white;
-
-        switch (FormationStats.FormationType)
-        {
-            case FormationType.AttackFormation:
-                attackButtonColor.color = Color.red;
-                break;
-            case FormationType.DefenceFormation:
-                defenceButtonColor.color = Color.red;
-                break;
-            case FormationType.CollectFormation:
-                collectButtonColor.color = Color.red;
-                break;
-        }
     }
 }
