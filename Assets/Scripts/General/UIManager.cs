@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject defenceButton;
     public GameObject collectButton;
 
-    public GameObject homeButton;
+    public TextMeshProUGUI CollectedResources;
 
     public Sprite appleSprite;
     public Sprite emptySprite;
@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
 
     public void Start()
     {
-        RedrawInventory(new List<Collectible>(), 3);
+        RedrawInventory();
     }
 
     public void PlayerChangeFormation(FormationType type)
@@ -68,13 +68,10 @@ public class UIManager : MonoBehaviour
         else activeButton.text = "Active used";
     }
 
-    public void ChangeHomeButton(bool state)
+    public void RedrawInventory()
     {
-        homeButton.SetActive(state);
-    }
-
-    public void RedrawInventory(List<Collectible> collectibles, int maxSize)
-    {
+        var collectibles = PlayerManager.instance.birds.collectedResources;
+        var maxSize = PlayerManager.instance.birds.maxResourceCount;
         foreach (var go in inventoryBoxes) go.SetActive(false);
         for (int i = 0; i < maxSize; i++)
         {
@@ -110,5 +107,18 @@ public class UIManager : MonoBehaviour
             }
             else inventoryItems[i].GetComponentInChildren<Image>().sprite = emptySprite;
         }
+    }
+
+    public void ToggleCollectedResources(bool state) 
+    {
+        CollectedResources.enabled = state;
+    }
+
+    public void UpdateCollectedResources()
+    {
+        CollectedResources.text = $"Еда: {PlayerManager.instance.LevelCollectedFood}\n" + 
+        $"Монеты: {PlayerManager.instance.LevelCollectedCoins}\n" +
+        $"Крышки: {PlayerManager.instance.LevelCollectedCaps}\n" +
+        $"Перья: {PlayerManager.instance.LevelCollectedFeathers}";
     }
 }

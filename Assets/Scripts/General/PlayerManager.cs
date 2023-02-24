@@ -9,14 +9,17 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
-    public TextMeshProUGUI foodText;
-
     public GameObject playerFormation;
-    private BirdsFormation birds;
+    public BirdsFormation birds;
 
     public GameObject featherPrefab;
     public GameObject deathEffectPrefab;
     public GameObject clashEffectPrefab;
+
+    public int LevelCollectedFood = 0;
+    public int LevelCollectedCoins = 0;
+    public int LevelCollectedCaps = 0;
+    public int LevelCollectedFeathers = 0;
 
     public PlayerManager()
     {
@@ -32,8 +35,29 @@ public class PlayerManager : MonoBehaviour
 
     public void ReturnHome()
     {
-        SaveResourceProgress();
-        SceneManager.LoadScene(0);
+        foreach (var collectible in birds.collectedResources)
+        {
+            switch (collectible.Type)
+            {
+                case CollectibleResource.Apple:
+                case CollectibleResource.Blueberry:
+                case CollectibleResource.Cranberry:
+                    LevelCollectedFood++;
+                break;
+                case CollectibleResource.Coin:
+                    LevelCollectedCoins++;
+                break;
+                case CollectibleResource.Cap:
+                    LevelCollectedCaps++;
+                break;
+                case CollectibleResource.Feather:
+                    LevelCollectedFeathers++;
+                break;
+            }
+        }
+        birds.collectedResources.Clear();
+        UIManager.instance.UpdateCollectedResources();
+        UIManager.instance.RedrawInventory();
     }
 
     private void SaveResourceProgress()

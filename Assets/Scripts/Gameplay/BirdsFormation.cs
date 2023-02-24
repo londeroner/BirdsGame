@@ -29,9 +29,9 @@ public class BirdsFormation : MonoBehaviour
     private IEnumerator abilityActive;
 
     [NonSerialized]
-    private List<Collectible> collectedResources = new List<Collectible>();
+    public List<Collectible> collectedResources = new List<Collectible>();
     [NonSerialized]
-    private byte maxResourceCount = 3;
+    public byte maxResourceCount = 3;
 
     private BirdEffectManager _effectManager;
 
@@ -188,7 +188,7 @@ public class BirdsFormation : MonoBehaviour
             default: throw new System.Exception("No resource type");
         }
 
-        if (IsPlayer) UIManager.instance.RedrawInventory(collectedResources, maxResourceCount);
+        if (IsPlayer) UIManager.instance.RedrawInventory();
 
         return true;
     }
@@ -225,7 +225,7 @@ public class BirdsFormation : MonoBehaviour
             f.GetComponentInChildren<Collectible>().Drop();
 
             collectedResources.Remove(drop);
-            UIManager.instance.RedrawInventory(collectedResources, maxResourceCount);
+            UIManager.instance.RedrawInventory();
         }
     }
 

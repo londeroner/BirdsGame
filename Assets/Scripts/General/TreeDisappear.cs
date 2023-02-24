@@ -30,7 +30,8 @@ public class TreeDisappear : MonoBehaviour
 
             if (isHomeTree && birdFormation.GetComponent<BirdsFormation>().IsPlayer)
             {
-                UIManager.instance.ChangeHomeButton(true);
+                PlayerManager.instance.ReturnHome();
+                UIManager.instance.ToggleCollectedResources(true);
             }
         }
     }
@@ -55,7 +56,7 @@ public class TreeDisappear : MonoBehaviour
 
             if (isHomeTree)
             {
-                UIManager.instance.ChangeHomeButton(true);
+                UIManager.instance.ToggleCollectedResources(false);
             }
         }
 
