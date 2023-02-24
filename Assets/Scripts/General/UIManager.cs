@@ -18,12 +18,12 @@ public class UIManager : MonoBehaviour
     }
 
     public TextMeshProUGUI activeButton;
+    public TextMeshProUGUI CollectedResources;
+    public TextMeshProUGUI LevelTimer;
 
     public GameObject attackButton;
     public GameObject defenceButton;
     public GameObject collectButton;
-
-    public TextMeshProUGUI CollectedResources;
 
     public Sprite appleSprite;
     public Sprite emptySprite;
@@ -109,16 +109,23 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ToggleCollectedResources(bool state) 
+    public void ToggleCollectedResources(bool state)
     {
         CollectedResources.enabled = state;
     }
 
     public void UpdateCollectedResources()
     {
-        CollectedResources.text = $"Еда: {PlayerManager.instance.LevelCollectedFood}\n" + 
+        CollectedResources.text = $"Еда: {PlayerManager.instance.LevelCollectedFood}\n" +
         $"Монеты: {PlayerManager.instance.LevelCollectedCoins}\n" +
         $"Крышки: {PlayerManager.instance.LevelCollectedCaps}\n" +
         $"Перья: {PlayerManager.instance.LevelCollectedFeathers}";
+    }
+
+    public void UpdateLevelTimer(float seconds)
+    {
+        TimeSpan time = TimeSpan.FromSeconds(seconds);
+
+        LevelTimer.text = time.ToString(@"mm\:ss");
     }
 }

@@ -31,6 +31,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         birds = playerFormation.GetComponent<BirdsFormation>();
+        StartCoroutine(EndLevel());
     }
 
     public void ReturnHome()
@@ -43,16 +44,16 @@ public class PlayerManager : MonoBehaviour
                 case CollectibleResource.Blueberry:
                 case CollectibleResource.Cranberry:
                     LevelCollectedFood++;
-                break;
+                    break;
                 case CollectibleResource.Coin:
                     LevelCollectedCoins++;
-                break;
+                    break;
                 case CollectibleResource.Cap:
                     LevelCollectedCaps++;
-                break;
+                    break;
                 case CollectibleResource.Feather:
                     LevelCollectedFeathers++;
-                break;
+                    break;
             }
         }
         birds.collectedResources.Clear();
@@ -60,11 +61,27 @@ public class PlayerManager : MonoBehaviour
         UIManager.instance.RedrawInventory();
     }
 
+    private IEnumerator EndLevel()
+    {
+        float time = GameBalance.instance.LevelTimer;
+        int i = 0;
+        UIManager.instance.UpdateLevelTimer(time - i);
+        while (i < time)
+        {
+            yield return new WaitForSeconds(1f);
+            i++;
+            UIManager.instance.UpdateLevelTimer(time - i);
+        }
+
+        SaveResourceProgress();
+        SceneManager.LoadScene(0);
+    }
+
     private void SaveResourceProgress()
     {
-        //PlayerPrefs.SetInt(ConstNames.FoodPrefs, birds.CollectedFood + PlayerPrefs.GetInt(ConstNames.FoodPrefs, 0));
-        //PlayerPrefs.SetInt(ConstNames.CoinPrefs, birds.CollectedCoins + PlayerPrefs.GetInt(ConstNames.CoinPrefs, 0));
-        //PlayerPrefs.SetInt(ConstNames.CapsPrefs, birds.CollectedCaps + PlayerPrefs.GetInt(ConstNames.CapsPrefs, 0));
-        //PlayerPrefs.SetInt(ConstNames.FeatherPrefs, birds.CollectedFeathers + PlayerPrefs.GetInt(ConstNames.FeatherPrefs, 0));
+        PlayerPrefs.SetInt(ConstNames.FoodPrefs, LevelCollectedFood + PlayerPrefs.GetInt(ConstNames.FoodPrefs, 0));
+        PlayerPrefs.SetInt(ConstNames.CoinPrefs, LevelCollectedCoins + PlayerPrefs.GetInt(ConstNames.CoinPrefs, 0));
+        PlayerPrefs.SetInt(ConstNames.CapsPrefs, LevelCollectedCaps + PlayerPrefs.GetInt(ConstNames.CapsPrefs, 0));
+        PlayerPrefs.SetInt(ConstNames.FeatherPrefs, LevelCollectedFeathers + PlayerPrefs.GetInt(ConstNames.FeatherPrefs, 0));
     }
 }

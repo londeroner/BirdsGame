@@ -6,6 +6,8 @@ public class GameBalance : MonoBehaviour
 {
     public static GameBalance instance;
 
+    public float LevelTimer = 10f;
+
     public GameBalance()
     {
         if (instance == null)
@@ -13,7 +15,7 @@ public class GameBalance : MonoBehaviour
         else throw new System.Exception("More than 1 GameBalance instance");
     }
 
-    //[Header("Общий вес")]
+    //[Header("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ")]
     //public float MaxWeight = 30;
     //public float appleWeight = 0.25f;
     //public float cranberryWeight = 0.25f;
