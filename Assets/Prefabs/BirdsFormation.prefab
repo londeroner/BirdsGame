@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8089344253079444578}
   - component: {fileID: 2805935738752679341}
   - component: {fileID: 6037828717358356702}
+  - component: {fileID: 903493145755984249}
   m_Layer: 0
   m_Name: BirdsFormation
   m_TagString: Formation
@@ -154,6 +155,26 @@ MonoBehaviour:
   Joystick: {fileID: 0}
   ForcePower: 10
   TurnSpeed: 45
+--- !u!95 &903493145755984249
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956264650492804708}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f4a77a2d5fe31249a80c8d90e51bb5a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3845259282542025624
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +541,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911592143507410800, guid: 2c654bd2f9dfcd9448b732504f2dc61d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911592143507410800, guid: 2c654bd2f9dfcd9448b732504f2dc61d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911592143507410800, guid: 2c654bd2f9dfcd9448b732504f2dc61d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 1911592143507410800, guid: 2c654bd2f9dfcd9448b732504f2dc61d,
         type: 3}
