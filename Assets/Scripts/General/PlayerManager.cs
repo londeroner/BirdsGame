@@ -73,6 +73,7 @@ public class PlayerManager : MonoBehaviour
             UIManager.instance.UpdateLevelTimer(time - i);
         }
 
+        ReturnHome();
         SaveResourceProgress();
         SceneManager.LoadScene(0);
     }
