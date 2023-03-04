@@ -39,6 +39,10 @@ public class GenerationArea : MonoBehaviour
                             generated = Instantiate(GenerationSystem.instance.cranberryPrefab, point.generationPoint.transform.position, point.rotation);
                             break;
                     }
+                    if (!point.useGravity)
+                    {
+
+                    }
                     generated.GetComponentInChildren<Rigidbody>().useGravity = point.useGravity;
                     point.isFilled = true;
                     return true;

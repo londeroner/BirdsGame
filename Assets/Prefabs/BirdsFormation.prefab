@@ -92,7 +92,6 @@ MonoBehaviour:
     AttackDuration: 5
     DefenceDuration: 5
     CollectDuration: 3
-  ActiveButtonText: {fileID: 0}
 --- !u!114 &3415063069761799539
 MonoBehaviour:
   m_ObjectHideFlags: 0

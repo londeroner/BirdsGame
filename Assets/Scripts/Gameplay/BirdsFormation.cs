@@ -110,6 +110,7 @@ public class BirdsFormation : MonoBehaviour
             Instantiate(PlayerManager.instance.deathEffectPrefab, gameObject.transform.position, new Quaternion());
             GameObject f = Instantiate(PlayerManager.instance.featherPrefab, gameObject.transform.position, new Quaternion());
             f.GetComponentInChildren<Collectible>().Drop();
+            f.GetComponentInChildren<Collectible>().Generated = true;
             Destroy(gameObject);
         }
         else
@@ -223,6 +224,7 @@ public class BirdsFormation : MonoBehaviour
             GameObject f = Instantiate(prefabToDrop, gameObject.transform.position, new Quaternion());
             f.transform.Rotate(0f, new System.Random().Next(0, 360), 0f);
             f.GetComponentInChildren<Collectible>().Drop();
+            f.GetComponentInChildren<Collectible>().Generated = true;
 
             collectedResources.Remove(drop);
             UIManager.instance.RedrawInventory();

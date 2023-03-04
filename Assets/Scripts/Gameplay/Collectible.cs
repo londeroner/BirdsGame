@@ -9,6 +9,7 @@ public class Collectible : MonoBehaviour
 
     private Animator animator;
     private bool CanCollect = true;
+    public bool Generated = false;
 
     public void Awake()
     {
@@ -31,7 +32,8 @@ public class Collectible : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         CanCollect = true;
-        GetComponentInChildren<Rigidbody>().useGravity = true;
+        if (Generated)
+            GetComponentInChildren<Rigidbody>().useGravity = true;
     }
 
     public void Drop()
