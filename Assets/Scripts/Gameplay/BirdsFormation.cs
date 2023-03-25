@@ -35,6 +35,8 @@ public class BirdsFormation : MonoBehaviour
 
     private BirdEffectManager _effectManager;
 
+    private Animator _animator; 
+
     [NonSerialized]
     public GameObject Tree;
     void Awake()
@@ -43,6 +45,7 @@ public class BirdsFormation : MonoBehaviour
         chargeActive = ChargeActive();
         abilityActive = AbilityActive();
         _effectManager = GetComponent<BirdEffectManager>();
+        _animator = GetComponent<Animator>();
     }
 
     public void ChangeFormationTypeFromButton(int type)
@@ -74,6 +77,7 @@ public class BirdsFormation : MonoBehaviour
         _effectManager.DisableAll();
 
         FormationStats.FormationType = type;
+        ChangeAnimation();
 
         StartCoroutine(chargeActive);
 
@@ -238,5 +242,27 @@ public class BirdsFormation : MonoBehaviour
         float z = (a.z + b.z) / 2;
 
         return new Vector3(x, y + yadd, z);
+    }
+
+    private void ChangeAnimation()
+    {
+        if (IsPlayer)
+        {
+            switch (FormationStats.FormationType)
+            {
+                case FormationType.NeutralFormation:
+                    _animator.Play("Base Layer.AFK formation");
+                    break;
+                case FormationType.AttackFormation:
+                    _animator.Play("Base Layer.New Animation attack formation");
+                    break;
+                case FormationType.DefenceFormation:
+                    _animator.Play("Base Layer.Defence formation");
+                    break;
+                case FormationType.CollectFormation:
+                    _animator.Play("Base Layer.Gathering formation");
+                    break;
+            }
+        }
     }
 }
