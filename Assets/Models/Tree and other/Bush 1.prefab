@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &455987653577140803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8786730294709897032}
+  m_Layer: 0
+  m_Name: Generation point (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8786730294709897032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455987653577140803}
+  m_LocalRotation: {x: -0.6826119, y: 0.29241502, z: 0.5557353, w: 0.37375504}
+  m_LocalPosition: {x: -6.71, y: 3.17, z: 3.42}
+  m_LocalScale: {x: 3.571429, y: 3.5714295, z: 3.571429}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6628378888052694121}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1594894284073055786
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +42,7 @@ GameObject:
   - component: {fileID: 6628378888052694121}
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
+  - component: {fileID: 676579203808587652}
   m_Layer: 0
   m_Name: Bush 1
   m_TagString: Untagged
@@ -29,7 +61,9 @@ Transform:
   m_LocalPosition: {x: 1.3585676, y: 1.1709985, z: -0.56194025}
   m_LocalScale: {x: 0.27999994, y: 0.27999997, z: 0.2799999}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8786730294709897032}
+  - {fileID: 2146195919681821768}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -83,3 +117,73 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &676579203808587652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594894284073055786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0d35f0655b87c4b8f66e6f19ca474a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - generationPoint: {fileID: 8801073724140026984}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    resourceType: 4
+    useGravity: 0
+  - generationPoint: {fileID: 455987653577140803}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    resourceType: 4
+    useGravity: 0
+--- !u!1 &8801073724140026984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2146195919681821768}
+  - component: {fileID: 6313044303713353440}
+  m_Layer: 0
+  m_Name: Generation point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2146195919681821768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8801073724140026984}
+  m_LocalRotation: {x: -0.6826119, y: 0.29241502, z: 0.5557353, w: 0.37375504}
+  m_LocalPosition: {x: -2.1900003, y: -3.8099997, z: 4.289999}
+  m_LocalScale: {x: 3.571429, y: 3.5714295, z: 3.571429}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6628378888052694121}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6313044303713353440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8801073724140026984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0d35f0655b87c4b8f66e6f19ca474a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - generationPoint: {fileID: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    resourceType: 4
+    useGravity: 0
